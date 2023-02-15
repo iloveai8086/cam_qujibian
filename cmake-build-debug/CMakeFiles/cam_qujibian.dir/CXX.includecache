@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/media/ros/A666B94D66B91F4D/ros/learning/cam_qujibian/main.cpp
+iostream
+-
+opencv2/opencv.hpp
+-
+opencv2/calib3d.hpp
+-
+opencv2/calib3d/calib3d.hpp
+-
+sys/types.h
+-
+dirent.h
+-
+vector
+-
+string.h
+-
+
