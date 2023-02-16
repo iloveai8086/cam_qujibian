@@ -168,7 +168,7 @@ int main() {
 
     const string str = "/media/ros/A666B94D66B91F4D/ros/test_port/camera/front/";
     // const string old_path = "/media/ros/A666B94D66B91F4D/ros/test_port/camera/jibian/";  // 老的路径
-    const string old_path = "/media/ros/A666B94D66B91F4D/ros/test_port/camera/2023-02-15-16-34-50/";  // 老的路径
+    const string old_path = "/media/ros/A666B94D66B91F4D/ros/test_port/camera/camera_lane_test/";  // 老的路径
     const int nImage = 915;
     const int ImgWidth = 1920;
     const int ImgHeight = 1080;
@@ -183,29 +183,32 @@ int main() {
 //            << 1010.1193051331736 / 1.4, 0.0, 1007.7481675024154, 0.0, 1009.4943272753831 /
 //                                                                       1.0, 577.4709247205907, 0.0, 0.0, 1.0);
     const cv::Mat K2 = (cv::Mat_<double>(3, 3)
-            << 1003.9989013289942 / 1.4, 0.0, 926.3763250309561, 0.0, 1004.1132782586517 / 1.0, 546.1004237610695, 0.0, 0.0, 1.0);
+            << 1003.9989013289942 / 1.6, 0.0, 926.3763250309561, 0.0, 1004.1132782586517 / 1.0, 546.1004237610695, 0.0, 0.0, 1.0);
     // 这几个参数有点小忘记了到底除以多少，黑边怎么办，弯曲怎么办？
 
     cv::Mat NewCameraMatrix = cv::getOptimalNewCameraMatrix(K2, D, imageSize, alpha, imageSize, 0);
+
     // 内参改了，但畸变系数不用改？
-    cv::Matx33d KK;
-    KK(0, 0) = 599.1767578125;
-    KK(0, 1) = 0;
-    KK(0, 2) = 1051.742061275407;
-    KK(1, 0) = 0;
-    KK(1, 1) = 989.3424682617188;
-    KK(1, 2) = 571.4513472305662;
-    KK(2, 0) = 0;
-    KK(2, 1) = 0;
-    KK(2, 2) = 1;
+//    cv::Matx33d KK;
+//    KK(0, 0) = 599.1767578125;
+//    KK(0, 1) = 0;
+//    KK(0, 2) = 1051.742061275407;
+//    KK(1, 0) = 0;
+//    KK(1, 1) = 989.3424682617188;
+//    KK(1, 2) = 571.4513472305662;
+//    KK(2, 0) = 0;
+//    KK(2, 1) = 0;
+//    KK(2, 2) = 1;
     std::cout<<NewCameraMatrix<<std::endl;
+    // std::cout<<NewCameraMatrix.inv()<<std::endl;
     // 需要搞清楚畸变系数
 
     // string new_path = "/media/ros/A666B94D66B91F4D/ros/test_port/camera/qujibian2/";  // 新的路径
-    string new_path = "/media/ros/A666B94D66B91F4D/ros/test_port/camera/2023-02-15-16-34-50-qujibian/";  // 新的路径
+    string new_path = "/media/ros/A666B94D66B91F4D/ros/test_port/camera/camera_lane_test_qujibian/";  // 新的路径
     vector<string> file_name;
     GetFileNames(old_path, file_name);
     // 最好sort一下
+    std::sort(file_name.begin(),file_name.end());
     for (int i = 0; i < file_name.size(); i++) {
         cout << old_path + file_name[i] << endl;
         // string InputPath = "/media/ros/A666B94D66B91F4D/ros/test_port/camera/front/1658972540336259470.jpg";
