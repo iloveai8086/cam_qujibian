@@ -154,21 +154,28 @@ cam0:
 
 int main() {
     //f_x}{0}{c_x}{0}{f_y}{c_y}{0}{0}{_1}\f$.
+    // 三号车
 //    const cv::Mat K = (cv::Mat_<double>(3, 3)
 //            << 1010.1193051331736, 0.0, 1007.7481675024154, 0.0, 1009.4943272753831, 577.4709247205907, 0.0, 0.0, 1.0);
 //    const cv::Mat D = (cv::Mat_<double>(4, 1)
 //            << -0.06663067168381479, 0.0009026610617662017, -0.007498635027107796, 0.0019139336144852457);
 
+
+// 1号车
+//    const cv::Mat K = (cv::Mat_<double>(3, 3)
+//            << 1003.9989013289942, 0.0, 926.3763250309561, 0.0, 1004.1132782586517, 546.1004237610695, 0.0, 0.0, 1.0);
+//
+//    const cv::Mat D = (cv::Mat_<double>(4, 1)
+//            << -0.0526858350541784, -0.01873269061565343, 0.0060846931831152, -0.0016727061237763216);
+
+// 二号车
     const cv::Mat K = (cv::Mat_<double>(3, 3)
-            << 1003.9989013289942, 0.0, 926.3763250309561, 0.0, 1004.1132782586517, 546.1004237610695, 0.0, 0.0, 1.0);
-
+            << 1004.374739582285, 0.0, 941.5232440525655, 0.0, 1003.9191500026428, 592.1157654586079, 0.0, 0.0, 1.0);
     const cv::Mat D = (cv::Mat_<double>(4, 1)
-            << -0.0526858350541784, -0.01873269061565343, 0.0060846931831152, -0.0016727061237763216);
-
-
+            << -0.054613280720461926,  -0.014843292079092893, 0.004670322686634465,  -0.0014125235895859126);
     const string str = "/media/ros/A666B94D66B91F4D/ros/test_port/camera/front/";
     // const string old_path = "/media/ros/A666B94D66B91F4D/ros/test_port/camera/jibian/";  // 老的路径
-    const string old_path = "/media/ros/A666B94D66B91F4D/ros/test_port/camera/camera_lane_test/";  // 老的路径
+    const string old_path = "/media/ros/A666B94D66B91F4D/ros/test_port/camera/car2_origin/";  // 老的路径
     const int nImage = 915;
     const int ImgWidth = 1920;
     const int ImgHeight = 1080;
@@ -179,12 +186,17 @@ int main() {
     cv::Mat map1, map2;
     cv::Size imageSize(ImgWidth, ImgHeight);
     const double alpha = 0;  // 控制黑边的记得
+    //car3
 //    const cv::Mat K2 = (cv::Mat_<double>(3, 3)
 //            << 1010.1193051331736 / 1.4, 0.0, 1007.7481675024154, 0.0, 1009.4943272753831 /
 //                                                                       1.0, 577.4709247205907, 0.0, 0.0, 1.0);
-    const cv::Mat K2 = (cv::Mat_<double>(3, 3)
-            << 1003.9989013289942 / 1.6, 0.0, 926.3763250309561, 0.0, 1004.1132782586517 / 1.0, 546.1004237610695, 0.0, 0.0, 1.0);
+    // car1
+//    const cv::Mat K2 = (cv::Mat_<double>(3, 3)
+//            << 1003.9989013289942 / 1.6, 0.0, 926.3763250309561, 0.0, 1004.1132782586517 / 1.0, 546.1004237610695, 0.0, 0.0, 1.0);
     // 这几个参数有点小忘记了到底除以多少，黑边怎么办，弯曲怎么办？
+    //car2
+    const cv::Mat K2 = (cv::Mat_<double>(3, 3)
+            << 1004.374739582285 / 1.6, 0.0, 941.5232440525655, 0.0, 1003.9191500026428, 592.1157654586079, 0.0, 0.0, 1.0);
 
     cv::Mat NewCameraMatrix = cv::getOptimalNewCameraMatrix(K2, D, imageSize, alpha, imageSize, 0);
 
@@ -204,7 +216,7 @@ int main() {
     // 需要搞清楚畸变系数
 
     // string new_path = "/media/ros/A666B94D66B91F4D/ros/test_port/camera/qujibian2/";  // 新的路径
-    string new_path = "/media/ros/A666B94D66B91F4D/ros/test_port/camera/camera_lane_test_qujibian/";  // 新的路径
+    string new_path = "/media/ros/A666B94D66B91F4D/ros/test_port/camera/car2_qujibian/";  // 新的路径
     vector<string> file_name;
     GetFileNames(old_path, file_name);
     // 最好sort一下
